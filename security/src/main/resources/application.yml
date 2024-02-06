@@ -3,7 +3,7 @@ spring:
     console:
       enabled: true
   datasource:
-    url: jdbc:h2:mem:atquilDB
+    url: jdbc:h2:mem:security
     username: sa
     password:
     driverClassName: org.h2.Driver
