@@ -1,5 +1,6 @@
-package com.entregas.security.configs;
+package com.entregas.security.configs.userConfig;
 
+import com.entregas.security.configs.userConfig.UserInfoConfig;
 import com.entregas.security.repositories.UserInfoRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

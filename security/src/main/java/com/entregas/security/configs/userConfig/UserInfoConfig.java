@@ -1,4 +1,4 @@
-package com.entregas.security.configs;
+package com.entregas.security.configs.userConfig;
 
 import com.entregas.security.entities.UserInfoEntity;
 import lombok.RequiredArgsConstructor;
