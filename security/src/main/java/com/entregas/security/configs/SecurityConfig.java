@@ -1,5 +1,7 @@
 package com.entregas.security.configs;
 
+import com.entregas.security.configs.jwtToken.JwtAccessTokenFilter;
+import com.entregas.security.configs.jwtToken.JwtTokenUtils;
 import com.entregas.security.configs.userConfig.UserInfoManagerConfig;
 
 import com.nimbusds.jose.jwk.JWK;
@@ -10,6 +12,7 @@ import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -24,7 +27,10 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
+import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
+import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -33,6 +39,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 
 
+@Slf4j
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -41,10 +48,11 @@ public class SecurityConfig {
 
     private final RSAKeyRecord rsaKeyRecord;
     private final UserInfoManagerConfig userInfoManagerConfig;
+    private final JwtTokenUtils jwtTokenUtils;
 
     @Bean
     @Order(1)
-    public SecurityFilterChain apiSecurityFilterChain(HttpSecurity httpSecurity) throws Exception{
+    public SecurityFilterChain apiSecurityFilterChain1(HttpSecurity httpSecurity) throws Exception{
         return httpSecurity
                 .securityMatcher(new AntPathRequestMatcher("/api/**"))
                 .csrf(AbstractHttpConfigurer::disable)
@@ -56,8 +64,28 @@ public class SecurityConfig {
     }
 
 
+
     @Bean
-    @Order(1)
+    @Order(2)
+    public SecurityFilterChain apiSecurityFilterChain(HttpSecurity httpSecurity) throws Exception{
+        return httpSecurity
+                .securityMatcher(new AntPathRequestMatcher("/api/**"))
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(withDefaults()))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(new JwtAccessTokenFilter(rsaKeyRecord, jwtTokenUtils), UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(ex -> {
+                    log.error("[SecurityConfig:apiSecurityFilterChain] Exception due to :{}",ex);
+                    ex.authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint());
+                    ex.accessDeniedHandler(new BearerTokenAccessDeniedHandler());
+                })
+                .httpBasic(withDefaults())
+                .build();
+    }
+
+    @Bean
+    @Order(3)
     public SecurityFilterChain signInSecurityFilterChain(HttpSecurity httpSecurity) throws Exception{
         return httpSecurity
                 .securityMatcher(new AntPathRequestMatcher("/sign-in/**"))
@@ -76,7 +104,7 @@ public class SecurityConfig {
 
 
     @Bean
-    @Order(2)
+    @Order(4)
     public SecurityFilterChain h2ConsoleSecurityFilterChainConfig(HttpSecurity httpSecurity) throws Exception{
         return httpSecurity
                 .securityMatcher(new AntPathRequestMatcher(("/h2-console/**")))
