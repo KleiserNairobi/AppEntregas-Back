@@ -1,10 +1,10 @@
-package com.entregas.security;
+package com.entregas.moduloendereco;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SecurityApplicationTests {
+class ModuloEnderecoApplicationTests {
 
 	@Test
 	void contextLoads() {

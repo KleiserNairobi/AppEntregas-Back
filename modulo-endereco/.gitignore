@@ -35,8 +35,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-### Keys ###
-*.pem
-
-*.DS_Store
