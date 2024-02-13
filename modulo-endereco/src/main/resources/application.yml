@@ -1,0 +1,37 @@
+
+# CONFIGURACOES DO BANCO DE DADOS
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/AppChamai-Local
+    username: postgres
+    password: root
+
+  # CONFIGURACOES JPA
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+    show-sql: true
+
+  # POOL DE CONEXOES
+  datasource:
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 1
+      idle-timeout: 30000
+
+  # PARA TESTES DE ENVIO DE EMAIL - GMAIL
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: app.chamaih@gmail.com
+    password: adminchamaih
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 10000
