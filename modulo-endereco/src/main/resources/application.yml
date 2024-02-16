@@ -2,23 +2,20 @@
 # CONFIGURACOES DO BANCO DE DADOS
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/AppChamai-Local
-    username: postgres
-    password: root
+    url: jdbc:postgresql://localhost:5432/enderecos
+    username: admin
+    password: admin
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 1
+      idle-timeout: 30000
 
   # CONFIGURACOES JPA
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
-
-  # POOL DE CONEXOES
-  datasource:
-    hikari:
-      maximum-pool-size: 10
-      minimum-idle: 1
-      idle-timeout: 30000
 
   # PARA TESTES DE ENVIO DE EMAIL - GMAIL
   mail:
