@@ -1,6 +1,11 @@
+server:
+  port: 8090
 
 # CONFIGURACOES DO BANCO DE DADOS
 spring:
+  application:
+    name: MODULO-ENDERECO
+
   datasource:
     url: jdbc:postgresql://localhost:5432/enderecos
     username: admin
