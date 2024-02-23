@@ -1,4 +1,4 @@
-package com.entregas.moduloendereco.controllers;
+package com.entregas.moduloendereco.resources;
 
 import com.entregas.moduloendereco.entities.Estado;
 import com.entregas.moduloendereco.services.EstadoService;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/estados")
-public class EstadoController {
+public class EstadoResource {
 
     @Autowired
     private EstadoService service;
