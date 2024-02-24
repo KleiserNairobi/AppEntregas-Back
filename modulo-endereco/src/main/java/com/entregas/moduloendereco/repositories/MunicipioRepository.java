@@ -2,7 +2,6 @@ package com.entregas.moduloendereco.repositories;
 
 import com.entregas.moduloendereco.entities.Estado;
 import com.entregas.moduloendereco.entities.Municipio;
-import com.entregas.moduloendereco.queries.MunicipioRepositoryQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface MunicipioRepository extends JpaRepository<Municipio, Long>, MunicipioRepositoryQuery {
+public interface MunicipioRepository extends JpaRepository<Municipio, Long> {
 
     @Query(" from Municipio m where m.estado = :estado order by m.estado, m.nome ")
     List<Municipio> findByEstado(@Param("estado") Estado estado);

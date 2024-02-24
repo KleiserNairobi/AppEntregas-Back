@@ -26,9 +26,9 @@ public class MunicipioService {
         return repository.findAll();
     }
 
-    public Page<Municipio> findPage(MunicipioFilter filter, Pageable pageable) {
-        return repository.filtrar(filter, pageable);
-    }
+//    public Page<Municipio> findPage(MunicipioFilter filter, Pageable pageable) {
+//        return repository.filtrar(filter, pageable);
+//    }
 
     public Municipio find(Long id) {
         String mensagem = "Não existe um cadastro de município com o id " + id;

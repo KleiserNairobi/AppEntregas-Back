@@ -12,16 +12,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@SequenceGenerator(
-    name = "municipio_seq",
-    sequenceName = "municipio_seq",
-    initialValue = 5391,
-    allocationSize = 1
-)
 public class Municipio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "municipio_seq")
+    @SequenceGenerator(name = "municipio_seq", sequenceName = "municipio_seq", initialValue = 5391, allocationSize = 1)
     private Long id;
 
     @Size(min = 3, max = 60)
