@@ -2,10 +2,10 @@ package com.entregas.moduloendereco.services;
 
 import com.entregas.moduloendereco.entities.Endereco;
 import com.entregas.moduloendereco.repositories.EnderecoRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;

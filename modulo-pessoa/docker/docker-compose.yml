@@ -3,17 +3,17 @@ services:
   db:
     image: postgres:16.2
     restart: always
-    container_name: db-endereco
+    container_name: db-pessoa
     environment:
-      POSTGRES_DB: enderecos
+      POSTGRES_DB: pessoas
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
     ports:
-      - 5432:5432
+      - 5433:5432
     networks:
       - local_entregas
     volumes:
-      - C:/Projetos/PostgresData/Enderecos:/var/lib/postgresql/data
+      - C:/Projetos/PostgresData/Pessoas:/var/lib/postgresql/data
 networks:
   local_entregas:
     driver: bridge

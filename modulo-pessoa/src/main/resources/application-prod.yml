@@ -1,8 +1,11 @@
+# CONFIGURACOES DE PORTA
+server:
+  port: 5000
 
 # CONFIGURACOES DO BANCO DE DADOS
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/enderecos
+    url: jdbc:postgresql://localhost:5433/pessoas
     username: admin
     password: admin
   hikari:
@@ -16,4 +19,3 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
-

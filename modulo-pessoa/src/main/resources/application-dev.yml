@@ -2,7 +2,7 @@
 # CONFIGURACOES DO BANCO DE DADOS
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/enderecos
+    url: jdbc:postgresql://localhost:5433/pessoas
     username: admin
     password: admin
   hikari:
