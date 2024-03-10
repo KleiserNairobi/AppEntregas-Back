@@ -7,10 +7,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication
 @EnableConfigurationProperties(RSAKeyRecord.class)
-public class SecurityApplication {
+public class ModuloSegurancaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SecurityApplication.class, args);
+		SpringApplication.run(ModuloSegurancaApplication.class, args);
 	}
 
 }
