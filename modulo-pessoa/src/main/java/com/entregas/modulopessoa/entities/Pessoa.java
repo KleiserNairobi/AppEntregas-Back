@@ -19,8 +19,7 @@ import java.time.LocalDate;
 public class Pessoa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pessoa_seq")
-    @SequenceGenerator(name = "pessoa_seq", sequenceName = "pessoa_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull(message = "Tipo é obrigatório")
@@ -66,6 +65,5 @@ public class Pessoa {
 
     @Column(name = "data_alteracao")
     private LocalDate dataAlteracao;
-
 
 }

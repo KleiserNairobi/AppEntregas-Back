@@ -14,8 +14,7 @@ import lombok.NoArgsConstructor;
 public class Categoria {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "categoria_seq")
-    @SequenceGenerator(name = "categoria_seq", sequenceName = "categoria_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotEmpty(message = "Nome é obrigatório")

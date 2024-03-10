@@ -1,8 +1,7 @@
 -- cria_tabela_pessoa
-CREATE SEQUENCE IF NOT EXISTS public.pessoa_seq START 1;
 
 CREATE TABLE public.pessoa (
-	id int4 NOT NULL DEFAULT nextval('pessoa_seq'),
+	id serial NOT NULL,
 	tipo bpchar(1) NOT NULL,
 	nome varchar(60) NOT NULL,
 	email varchar(100) NOT NULL,
