@@ -3,20 +3,21 @@ server:
 spring:
   application:
     name: API-GATEWAY
+  #main:
+  #  web-application-type: reactive
   cloud:
     gateway:
       routes:
         - id: modulo-endereco
-          uri: http://localhost:8081
+          uri: lb://MODULO-ENDERECO
           predicates:
-            - Path=api/v1/estados/**
-            - Path=api/v1/municipios/**
-            - Path=api/v1/enderecos/**
-        - id: modulo-pessoa
-          uri: lb://MODULO-PESSOA
-          predicates:
-            - Path=api/v1/pessoas/**
-
+            - Path=/api/v1/estados/**
+            - Path=/api/v1/municipios/**
+            - Path=/api/v1/enderecos/**
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
 eureka:
   client:
     register-with-eureka: true
